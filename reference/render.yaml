@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: asp-reference
+    runtime: node
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: ASP_INSTANCE
+        sync: false
+      - key: ASP_JWT_SECRET
+        generateValue: true
+      - key: ASP_DB_PATH
+        value: /var/data/asp.db
+    disk:
+      name: asp-data
+      mountPath: /var/data
+      sizeGB: 1
